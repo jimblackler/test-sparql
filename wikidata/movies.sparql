@@ -1,0 +1,18 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX schema: <http://schema.org/>
+PREFIX wd: <http://www.wikidata.org/entity/>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+
+SELECT DISTINCT * WHERE {
+    ?id wdt:P31/wdt:P279* wd:Q11424 ;
+        rdfs:label ?label ;
+        wikibase:identifiers ?identifiers .
+    FILTER (LANG(?label) = "en")
+    ?article schema:about ?id ;
+        schema:inLanguage "en" ;
+        schema:isPartOf <https://en.wikipedia.org/> ;
+        schema:name ?articleName .
+}
+ORDER BY DESC (?identifiers)
+LIMIT 100
