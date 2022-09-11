@@ -34,14 +34,12 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
 SELECT * WHERE {
     SERVICE wikibase:mwapi {
-        bd:serviceParam wikibase:endpoint "www.wikidata.org" ;
-            wikibase:api "Search" ;
-            mwapi:list "search" ;
-            mwapi:srsearch "actor" .
-        ?title wikibase:apiOutput mwapi:title .
+        bd:serviceParam wikibase:endpoint "www.wikidata.org";
+            wikibase:api "EntitySearch";
+            mwapi:search "cheese";
+            mwapi:language "en".
+        ?item wikibase:apiOutputItem mwapi:item.
+        ?num wikibase:apiOrdinal true.
     }
-#?title ?b ?c.
-#    ?title rdfs:label ?label.
-#    FILTER((LANG(?label)) = "en")
-
-}
+    ?item (wdt:P279|wdt:P31) ?type
+} ORDER BY ASC(?num) LIMIT 20

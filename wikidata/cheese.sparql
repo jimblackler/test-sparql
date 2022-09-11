@@ -39,8 +39,8 @@ SELECT ?item ?itemLabel ?type ?typeLabel WHERE {
                 bd:serviceParam wikibase:endpoint "en.wikipedia.org" ;
                     wikibase:api "Generator" ;
                     mwapi:generator "search" ;
-                    mwapi:gsrsearch "cheese" ;
-                    mwapi:gsrlimit "max" .
+                    mwapi:gsrsearch "actor" ;
+                    mwapi:gsrlimit "50" .
                 ?item wikibase:apiOutputItem mwapi:item .
             }
         }

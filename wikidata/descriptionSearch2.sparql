@@ -37,11 +37,13 @@ SELECT * WHERE {
         bd:serviceParam wikibase:endpoint "www.wikidata.org" ;
             wikibase:api "Search" ;
             mwapi:list "search" ;
-            mwapi:srsearch "actor" .
-        ?title wikibase:apiOutput mwapi:title .
+            mwapi:srsearch "actor" ;
+            mwapi:language "en" ;
+            mwapi:limit 5000 .
+        ?item wikibase:apiOutputItem mwapi:title .
     }
-#?title ?b ?c.
-#    ?title rdfs:label ?label.
-#    FILTER((LANG(?label)) = "en")
-
+    ?item rdfs:label ?label .
+    FILTER ((LANG(?label)) = "en")
+    ?item schema:description ?description .
+    FILTER ((LANG(?description)) = "en")
 }
