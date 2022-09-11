@@ -32,11 +32,22 @@ PREFIX wdv: <http://www.wikidata.org/value/>
 PREFIX wikibase: <http://wikiba.se/ontology#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 
-SELECT * WHERE {
-    SERVICE wikibase:mwapi {
-        bd:serviceParam wikibase:endpoint "www.wikidata.org" ;
-            wikibase:api "Search" ;
-            mwapi:srsearch "actor" .
-        ?title wikibase:apiOutput mwapi:title .
+SELECT ?item ?itemLabel ?type ?typeLabel WHERE {
+    {
+        SELECT ?item WHERE {
+            SERVICE wikibase:mwapi {
+                bd:serviceParam wikibase:endpoint "en.wikipedia.org" ;
+                    wikibase:api "Generator" ;
+                    mwapi:generator "search" ;
+                    mwapi:gsrsearch "cheese" ;
+                    mwapi:gsrlimit "max" .
+                ?item wikibase:apiOutputItem mwapi:item .
+            }
+        }
+        LIMIT 100
     }
+    hint:Prior hint:runFirst "true" .
+    ?item wdt:P31|wdt:P279 ?type .
+    SERVICE wikibase:label { bd:serviceParam wikibase:language "en" . }
 }
+LIMIT 100
