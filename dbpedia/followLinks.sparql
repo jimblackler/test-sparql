@@ -1,0 +1,12 @@
+PREFIX dbc: <http://dbpedia.org/resource/Category:>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbr: <http://dbpedia.org/resource/>
+PREFIX dct: <http://purl.org/dc/terms/>
+
+SELECT ?object2 (COUNT(?object2) AS ?cnt) WHERE {
+    VALUES ?subject {
+        <http://dbpedia.org/resource/List_of_cookies>
+    }
+    ?subject dbo:wikiPageWikiLink ?object2.
+} GROUP BY ?object2
+ORDER BY DESC (?cnt)

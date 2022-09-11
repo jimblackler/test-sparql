@@ -1,0 +1,13 @@
+PREFIX bd: <http://www.bigdata.com/rdf#>
+PREFIX wdt: <http://www.wikidata.org/prop/direct/>
+PREFIX wikibase: <http://wikiba.se/ontology#>
+
+SELECT DISTINCT ?endpoint ?endpointLabel ?sparql
+WHERE {
+    ?endpoint wdt:P5305 ?sparql .
+
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "[AUTO_LANGUAGE],en".
+    }
+}
+ORDER BY ASC(?endpointLabel)
