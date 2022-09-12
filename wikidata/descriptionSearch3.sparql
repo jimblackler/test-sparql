@@ -37,7 +37,7 @@ SELECT * WHERE {
         bd:serviceParam wikibase:endpoint "www.wikidata.org" ;
             wikibase:api "Search" ;
             mwapi:list "search" ;
-            mwapi:srsearch "vegetable" ;
+            mwapi:srsearch "actor" ;
             mwapi:language "en" ;
             mwapi:srqiprofile "popular_inclinks" .
         ?item wikibase:apiOutputItem mwapi:title .
@@ -46,6 +46,4 @@ SELECT * WHERE {
     FILTER (LANG(?label) = "en")
     ?item schema:description ?description .
     FILTER (LANG(?description) = "en")
-#    FILTER (CONTAINS(?description, "vegetable"))
 }
-LIMIT 5000
